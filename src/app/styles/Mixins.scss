@@ -1,0 +1,567 @@
+@use "./Var.scss" as var;
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+img[alt] {
+    color: var.$primary_color;
+}
+
+@mixin flexStyle ($flex, $direction, $justify, $align, $space) {
+    display: $flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $space;
+}
+
+@mixin bgStyle ($bg, $repeat, $bg_size, $height_size) {
+    background-image: $bg;
+    background-repeat: $repeat;
+    background-size: $bg_size;
+    min-height: $height-size;
+}
+
+@mixin sizeStyle ($size) {
+    font-size: clamp(.5rem, 10vw, $size);
+}
+
+@mixin componentAnimationStyle {
+    animation: componentAnim .85s ease-in-out;
+
+    @keyframes componentAnim{
+        0% {margin-left: -200rem}
+        100% {margin-left: 0rem}
+    }
+}
+
+@mixin componentStyle {
+    &_data_container {
+        @include flexStyle(flex, row, space-around, center, 0);
+        padding: 11rem 2rem 0rem 2rem;
+        width: 90%;
+
+        @include componentAnimationStyle;
+
+        @media (width <=var.$breakpoint_sm) {
+            @include flexStyle(flex, column, center, center, 2rem);
+            padding: 5rem 0rem;
+        }
+
+        &_bloc {
+            @include flexStyle(flex, column, flex-start, flex-start, 2rem);
+
+            @media (width <=var.$breakpoint_sm) {
+                @include flexStyle(flex, column, flex-start, center, 0rem);
+                text-align: center;
+                word-break: break-all;
+            }
+        }
+
+        h1 {
+            @include sizeStyle(1.5rem);
+            @extend %barlow_condensed_font;
+            letter-spacing: var.$letter_space;
+            margin-bottom: 8rem;
+
+            @media (width <=var.$breakpoint_sm) {
+                margin-bottom: calc(8rem / 2);
+            }
+
+            span:nth-child(1) {
+                color: var.$fiveth_color;
+            }
+
+            span:nth-child(2) {
+                color: var.$primary_color;
+            }
+        }
+
+        h2 {
+            color: var.$fiveth_color;
+            @include sizeStyle(2rem);
+            @extend %bellefair_font;
+
+            @media (width <=var.$breakpoint_sm) {
+                @include sizeStyle(4.5vw);
+            }
+        }
+
+        h3 {
+            @extend %bellefair_font;
+            @include sizeStyle(3.5rem);
+            color: var.$primary_color;
+
+            @media (width <=var.$breakpoint_sm) {
+                @include sizeStyle(7.5vw);
+            }
+        }
+
+        h5 {
+            line-height: 2rem;
+            @extend %barlow_condensed_font;
+            color: var.$secondary_color;
+            @include sizeStyle(1rem);
+        }
+
+        h6 {
+            @extend %barlow_condensed_font;
+            color: var.$primary_color;
+            @include sizeStyle(1.5rem);
+        }
+
+        p {
+            @extend %barlow_font;
+            @include sizeStyle(1rem);
+            color: var.$secondary_color;
+            line-height: 2rem;
+        }
+
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
+
+%transparent_button {
+    background: none;
+    border: none;
+
+    @media(width >=var.$breakpoint_sm) {
+        display: none;
+    }
+}
+
+%barlow_condensed_font {
+    font-family: var.$barlow_condensed_font;
+}
+
+%barlow_font {
+    font-family: var.$barlow_font;
+}
+
+%bellefair_font {
+    font-family: var.$bellefair_font;
+    font-weight: lighter;
+}
+
+@mixin NavbarStyle {
+    .navbar {
+        @extend %barlow_condensed_font;
+        @include sizeStyle(1.2rem);
+        position: fixed;
+        margin-top: 2.8rem;
+        width: 100%;
+        @include flexStyle(flex, row, flex-start, center, 0);
+
+        @media(width <=var.$breakpoint_sm) {
+            @include flexStyle(flex, column, flex-start, center, 0);
+        }
+
+        button[type="button"] {
+            @extend %transparent_button;
+        }
+
+        &_logo {
+            flex: 1;
+            @include flexStyle(flex, row, space-around, center, 0);
+
+            @media(width <=var.$breakpoint_sm) {
+                width: 100%;
+            }
+
+            img {
+                @media(width <=var.$breakpoint_sm) {
+                    width: 5rem;
+                }
+            }
+
+            button[type="button"] {
+                display: block;
+                cursor: pointer;
+
+                @media(width >=var.$breakpoint_sm) {
+                    display: none;
+                }
+
+                img {
+                    @media(width <=var.$breakpoint_sm) {
+                        width: 2.5rem;
+                    }
+                }
+            }
+
+
+            .line {
+                @media(width >=var.$breakpoint_lg) {
+                    background-color: var.$third_color;
+                    height: .01rem;
+                    border: none;
+                    flex: .73;
+                }
+            }
+        }
+
+        &_list {
+            @include flexStyle(flex, row, flex-start, center, 4rem);
+            flex: .8;
+            padding: 3rem;
+            background-image: linear-gradient(to right, var.$bg_color_nav);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(17.2px);
+            -webkit-backdrop-filter: blur(17.2px);
+
+            @media(width <=var.$breakpoint_sm) {
+                display: none;
+            }
+
+            &_active {
+                border-bottom: 1px solid var.$primary_color;
+                padding-bottom: 1rem;
+            }
+
+            li {
+                span {
+                    color: var.$primary_color;
+                }
+
+                span:nth-child(1) {
+                    margin-right: .5rem;
+
+                    @media(width <=var.$breakpoint_lg) {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &_show {
+            @media(width <=var.$breakpoint_sm) {
+                @include flexStyle(flex, column, flex-start, flex-start, calc(4rem / 2));
+                position: absolute;
+                height: 100vh;
+                width: 250px;
+                right: 0;
+                top: -80px;
+                padding-top: 3rem;
+                order: 1;
+                animation: slideShow .5s ease-in-out;
+            }
+
+            @keyframes slideShow {
+                0% {
+                    right: -50%
+                }
+
+                100% {
+                    right: 0%
+                }
+            }
+        }
+
+        &_close {
+            margin-bottom: 5rem;
+            margin-top: 2rem;
+
+            img {
+                @media(width <=var.$breakpoint_sm) {
+                    position: absolute;
+                    right: 0;
+                    margin-right: 2.5rem;
+                    width: 1.8rem;
+                }
+            }
+        }
+    }
+
+    .navbar_active {
+        background-color: var.$fourth_color;
+        margin-top: 0rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+@mixin HomeStyle {
+    .bg_home {
+        @include bgStyle(url(var.$bg_home_sm), no-repeat, cover, 100vh);
+        @include flexStyle(flex, row, space-around, center, 0);
+
+        @media(width >=var.$breakpoint_lg) {
+            @include bgStyle(url(var.$bg_home_lg), no-repeat, cover, 100vh);
+        }
+
+        @media (width <=var.$breakpoint_sm) {
+            @include flexStyle(flex, column, center, center, 3rem);
+            padding: var.$tablet_padding;
+        }
+
+        &_data_home_only {
+            @include flexStyle(flex, column, center, flex-start, 2rem);
+            max-width: 450px;
+
+            @include componentAnimationStyle;
+
+            @media (width <=var.$breakpoint_sm) {
+                @include flexStyle(flex, column, center, center, calc(2rem / 2));
+                width: 100%;
+            }
+
+            h1,
+            p {
+                color: var.$secondary_color;
+            }
+
+            h1 {
+                @extend %barlow_condensed_font;
+                @include sizeStyle(1.5rem);
+                letter-spacing: var.$letter_space;
+            }
+
+            h2 {
+                @extend %bellefair_font;
+                @include sizeStyle(10rem);
+                letter-spacing: var.$letter_space;
+                color: var.$primary_color;
+
+                @media (width <=var.$breakpoint_sm) {
+                    font-size: 20vw;
+                }
+            }
+
+            p {
+                @extend %barlow_font;
+
+                @media (width <=var.$breakpoint_sm) {
+                    text-align: center;
+                }
+            }
+        }
+
+        &_data_home_only:nth-child(2) {
+            padding-top: 5rem;
+            order: 2;
+
+            @media (width <=var.$breakpoint_sm) {
+                padding-top: 0rem;
+            }
+
+            p {
+                @include flexStyle(flex, row, center, center, 0);
+                aspect-ratio: 1/1;
+                color: var.$fourth_color;
+                width: 242px;
+                border-radius: 50%;
+                background-color: var.$primary_color;
+                @include sizeStyle(2rem);
+            }
+        }
+    }
+}
+
+@mixin DestinationStyle {
+    .bg_destination {
+        @include bgStyle(url(var.$bg_destination_sm), no-repeat, cover, 100vh);
+        @include flexStyle(flex, column, center, center, 0);
+
+        @media(width >=var.$breakpoint_lg) {
+            @include bgStyle(url(var.$bg_destination_lg), no-repeat, cover, 100vh);
+        }
+
+        @media (width <=var.$breakpoint_sm) {
+            padding: var.$tablet_padding;
+        }
+
+        @include componentStyle;
+
+        .bloc_planet {
+            @include flexStyle(flex, column, flex-start, flex-start, 2.5rem);
+            flex: .5;
+
+            @media (width <=var.$breakpoint_sm) {
+                @include flexStyle(flex, column, flex-start, center, 2.5rem);
+            }
+
+            &_bloc_name {
+                @include flexStyle(flex, row, flex-start, flex-start, 1.5rem);
+                @extend %barlow_condensed_font;
+                @include sizeStyle(1.25rem);
+                cursor: pointer;
+
+                &_name {
+                    color: var.$primary_color;
+                }
+
+                &_active_name {
+                    border-bottom: 1px solid var.$primary_color;
+                    animation: animActive .75s ease-in-out;
+
+                    @keyframes animActive {
+                        0% {opacity: 0}
+
+                        100% {opacity: 1}
+                    }
+                }
+            }
+
+            &_info {
+                @include flexStyle(flex, row, flex-start, center, 3rem);
+                border-top: 1px solid var.$primary_color;
+                width: 100%;
+                padding-top: 1rem;
+            }
+        }
+    }
+}
+
+@mixin CrewStyle {
+    .bg_crew {
+        @include bgStyle(url(var.$bg_crew_sm), no-repeat, cover, 100vh);
+        @include flexStyle(flex, column, center, center, 0);
+
+        @media(width >=var.$breakpoint_lg) {
+            @include bgStyle(url(var.$bg_crew_lg), no-repeat, cover, 100vh);
+        }
+
+        @media (width <=var.$breakpoint_sm) {
+            padding: var.$tablet_padding;
+        }
+
+        @include componentStyle;
+
+
+        p {
+            width: 23rem;
+
+            @media (width <=var.$breakpoint_sm) {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        .bullets {
+            padding-top: 3rem;
+            @include flexStyle(flex, row, center, center, 1rem);
+
+            .active {
+                background-color: var.$primary_color;
+            }
+
+            div {
+                background-color: rgba(255, 255, 255, .2);
+                cursor: pointer;
+                border-radius: 50%;
+                height: 12px;
+                width: 12px;
+                aspect-ratio: 1/1;
+                transition: all .75s ease-in-out;
+            }
+        }
+    }
+}
+
+@mixin TechnologyStyle {
+    .bg_technology {
+        @include bgStyle(url(var.$bg_technology_sm), no-repeat, cover, 100vh);
+        @include flexStyle(flex, column, flex-start, center, 0);
+
+        color: var.$primary_color;
+
+        @media(width >=var.$breakpoint_lg) {
+            @include bgStyle(url(var.$bg_technology_lg), no-repeat, cover, 100vh);
+        }
+
+        @media (width <=var.$breakpoint_sm) {
+            padding: var.$tablet_padding;
+        }
+
+        @include componentStyle;
+
+        h6 {
+            color: var.$secondary_color;
+        }
+
+        .active {
+            background-color: var.$primary_color;
+            color: var.$fourth_color;
+        }
+
+
+        &_flex_elements {
+            @include flexStyle(flex, row, center, center, 2rem);
+
+            @media (width <=var.$breakpoint_sm) {
+                @include flexStyle(flex, column-reverse, flex-start, flex-start, 3rem);
+            }
+
+            div {
+                @include flexStyle(flex, column, flex-start, flex-start, 2.5rem);
+            }
+
+            div:nth-child(1) {
+                @media (width <=var.$breakpoint_sm) {
+                    @include flexStyle(flex, row, center, flex-start, 2rem);
+                    width: 95%;
+                }
+
+                div {
+                    @include flexStyle(flex, row, center, center, 0rem);
+                    cursor: pointer;
+                    border-radius: 50%;
+                    height: 75px;
+                    width: 75px;
+                    aspect-ratio: 1/1;
+                    border: 1px solid var.$third_color;
+                    @include sizeStyle(1.5rem);
+                    @extend %barlow_condensed_font;
+                    transition: all .75s ease-in-out;
+
+                    @media (width <=var.$breakpoint_sm) {
+                        height: 50px;
+                        width: 50px;
+                    }
+
+                    &:hover {
+                        border: 1px solid var.$primary_color;
+                    }
+                }
+            }
+
+            div:nth-child(2) {
+                div:nth-child(1) {
+                    @include flexStyle(flex, column, flex-start, flex-start, .5rem);
+
+                    @media (width <=var.$breakpoint_sm) {
+                        @include flexStyle(flex, column, flex-start, center, .5rem);
+                        width: 95%;
+                    }
+                }
+
+                div:nth-child(2) {
+                    width: 28rem;
+
+                    @media (width <=var.$breakpoint_sm) {
+                        width: 95%;
+                    }
+                }
+            }
+        }
+
+        .picture_portrait {
+            display: none;
+
+            @media(width >=var.$breakpoint_sm) {
+                display: block;
+            }
+        }
+
+        .picture_landscape {
+            display: block;
+
+            @media(width >=var.$breakpoint_sm) {
+                display: none;
+            }
+        }
+    }
+}

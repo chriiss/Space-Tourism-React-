@@ -1,0 +1,33 @@
+$primary_color: #ffffff;
+$secondary_color: #d2d8f9;
+$third_color: rgb(120, 120, 120);
+$fourth_color: #212121;
+$fiveth_color: #ffffff80;
+
+$bg_color_nav: #000525, #2d3048, #595a6f, #898898, #bab9c3, #bebdca, #c3c0d2, #c7c4d9, #9d9abd, #7373a3, #464e89, #022d6f, 0;
+
+$barlow_condensed_font: 'Barlow Condensed', sans-serif;
+$bellefair_font: 'Bellefair', serif;
+$barlow_font: 'Barlow', sans-serif;
+
+$letter_space: 4.75px;
+
+$tablet_padding: 5rem 2rem 0rem 2rem;
+
+
+$bg_home_lg: "../assets/home/background-home-desktop.jpg";
+$bg_home_sm: "../assets/home/background-home-tablet.jpg";
+
+
+$bg_destination_lg: "../assets/destination/background-destination-desktop.jpg";
+$bg_destination_sm: "../assets/destination/background-destination-tablet.jpg";
+
+$bg_crew_lg: "../assets/crew/background-crew-desktop.jpg";
+$bg_crew_sm: "../assets/crew/background-crew-tablet.jpg";
+
+$bg_technology_lg: "../assets/technology/background-technology-desktop.jpg";
+$bg_technology_sm: "../assets/technology/background-technology-tablet.jpg";
+
+
+$breakpoint_lg: 992px;
+$breakpoint_sm: 768px;
