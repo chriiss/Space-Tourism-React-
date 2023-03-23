@@ -1,7 +1,7 @@
 {
     "navbarComponent": {
         "logo": {
-            "path": "/src/app/assets/shared/logo.svg",
+            "path": "./src/app/assets/shared/logo.svg",
             "altLogo": "Space tourism logo",
             "menu": "/src/app/assets/shared/icon-hamburger.svg",
             "altMenu": "Burger menu icon",
