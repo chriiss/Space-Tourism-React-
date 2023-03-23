@@ -2,7 +2,7 @@
 - git clone
 - go to the folder
 - npm install to install node module
-- npm run dev to launch the project on localhost 5172
+- npm run dev to launch the project on localhost 5173
 
 
 # Features
