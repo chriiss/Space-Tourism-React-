@@ -1,5 +1,4 @@
-import TabMenuV from "./tabMenuV/tabMenuV"
-
+import TabMenuV from "./tabMenuV/TabMenuV"
 
 const Technology = ({useState, styles, dataJson }) => {
     const technologyData = dataJson.technologyComponent;
