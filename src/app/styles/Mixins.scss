@@ -317,6 +317,7 @@ img[alt] {
                 @extend %barlow_condensed_font;
                 @include sizeStyle(1.5rem);
                 letter-spacing: var.$letter_space;
+                margin-top: 10rem;
             }
 
             h2 {
